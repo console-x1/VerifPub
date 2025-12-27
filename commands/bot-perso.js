@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, PermissionsBitField, PermissionFlagsBits, MessageFlags, TextDisplayBuilder, ContainerBuilder, SeparatorBuilder, SeparatorSpacingSize } = require("discord.js");
 
-const INVITE_URL = "https://discord.gg/fJjuY5BEJr";
+const INVITE_URL = "https://discord.gg/KdTGYJTC7X";
 const IMAGE_URL = "https://media.discordapp.net/attachments/1032947681619890268/1226269898200846437/rainbow_middle_load-1.gif";
 
 function createBotPersonnelComponents() {
