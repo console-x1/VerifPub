@@ -1,0 +1,31 @@
+# Database
+*.sqlite
+*.sql
+*.db
+
+# Backups
+backup/*
+backup/
+
+# login
+bots.json
+!bots.json.exemple
+
+# Logs
+logs/
+logs/*
+*.log
+
+# Dependency directories
+package-lock.json
+node_modules
+node_modules/
+node_modules/*
+
+# Optional npm cache directory
+.npm
+
+# dotenv environment variable files
+.env
+.env.*
+!.env.example

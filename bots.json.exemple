@@ -1,0 +1,34 @@
+[
+    {
+
+        "NAME": "-- BotName1 --",
+        "prefix": "!",
+        "owners": [
+            "userId1",
+            "userId2"
+        ],
+        "token": "",
+        "id": "",
+        "color": "#ffaa55",
+        "sendStartMsgId": "channelId1",
+        "sendGuildDelete": "channelId2",
+        "sendGuildAdd": "channelId3",
+        "sendStartMsg": true
+    },
+    {
+
+        "NAME": "-- BotName2 --",
+        "prefix": "!",
+        "owners": [
+            "userId1",
+            "userId2"
+        ],
+        "token": "",
+        "id": "",
+        "color": "#ffaa55",
+        "sendStartMsgId": "channelId1",
+        "sendGuildDelete": "channelId2",
+        "sendGuildAdd": "channelId3",
+        "sendStartMsg": true
+    }
+]

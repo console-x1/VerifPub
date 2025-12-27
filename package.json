@@ -1,0 +1,26 @@
+{
+  "name": "verifpub",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/console-x1/VerifPub.git"
+  },
+  "author": "console-x1",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/console-x1/VerifPub/issues"
+  },
+  "homepage": "https://github.com/console-x1/VerifPub#readme",
+  "description": "",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "discord.js": "^14.25.1",
+    "fs": "^0.0.1-security",
+    "node-cron": "^4.2.1",
+    "path": "^0.12.7"
+  }
+}
