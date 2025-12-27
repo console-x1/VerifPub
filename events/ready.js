@@ -30,7 +30,7 @@ module.exports = {
             const end = Date.now();
             const ping = end - start;
             const components = [
-                new TextDisplayBuilder().setContent(`## <a:bulletpoint:1414071939395223572> Je suis opérationnel !`),
+                new TextDisplayBuilder().setContent(`## <a:Verif:1262343698385993801> Je suis opérationnel !`),
                 new ContainerBuilder().addTextDisplayComponents(
                     new TextDisplayBuilder().setContent(
                         `<:wifi:1454545143825694781> **Ping :** ${ping} ms\n` +
