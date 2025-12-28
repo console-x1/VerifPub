@@ -174,7 +174,7 @@ Pour les détails complets, consultez le fichier [LICENSE](LICENSE)
 
 - [Repository GitHub](https://github.com/console-x1/VerifPub)
 - [Issues](https://github.com/console-x1/VerifPub/issues)
-- [Support Discord](https://discord.com/users/1066067393123733595)
+- [Support Discord](https://discord.gg/4EXvZvGUe5)
 
 ## 📋 Changelog
 

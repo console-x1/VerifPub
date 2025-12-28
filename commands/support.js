@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, PermissionsBitField, PermissionFlagsBits, TextDisplayBuilder, ContainerBuilder, SeparatorBuilder, SeparatorSpacingSize, MessageFlags } = require("discord.js");
 
-const link = "https://discord.com/users/1066067393123733595";
+const link = "https://discord.gg/4EXvZvGUe5";
 
 module.exports = {
     name: "support",

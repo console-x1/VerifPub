@@ -68,7 +68,7 @@ module.exports = {
         loggV(`[ PUB ] ${message.guild.name} / ${message.guild.id} | Publicité envoyée par ${message.author.id} / ${message.author.tag}#${message.author.discriminator} dans ${message.channel.name}`)
 
 
-        const inviteRegex = /(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li)|discordapp\.com\/invite)\/([a-zA-Z0-9-]+)/gi;
+        const inviteRegex = /(https?:\/\/)?(www\.)?((discord|discordapp)\.(gg|io|me|li|com))\/?(invite|invites)?\/([a-zA-Z0-9-]+)/gi;
         const invites = [...message.content.matchAll(inviteRegex)];
 
         let invitesList = [];
@@ -129,7 +129,7 @@ module.exports = {
             .setTimestamp();
 
         if (know) verifembed.addFields({ name: '<a:redalert:1262160513689714688> Avertissement <a:redalert:1262160513689714688>', value: '**__Ce membre est marqué comme selfbot !__** Si ce n\'est pas le cas, faites un ticket sur le support *(`/support` ou `' + client.config.prefix + 'support`)*', inline: false})
-        else if (selfbotSuspect) verifembed.addFields({ name: '<a:redalert:1262160513689714688> Avertissement <a:redalert:1262160513689714688>', value: '__Pattern régulier détecté__ — __*possible* Selfbot__\nIl est possible de signaler les selfsbots sur le serveur support :' + client.config.prefix + 'support (ou /support)', inline: false });
+        else if (selfbotSuspect) verifembed.addFields({ name: '<a:redalert:1262160513689714688> Avertissement <a:redalert:1262160513689714688>', value: '__Pattern régulier détecté__ — __*possible* Selfbot__\nIl est possible de signaler les selfsbots sur le serveur support: ' + client.config.prefix + 'support (ou /support)', inline: false });
 
         //Construction des boutons
         const buttonVerif = new ActionRowBuilder()

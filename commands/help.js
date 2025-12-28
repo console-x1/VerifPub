@@ -36,7 +36,7 @@ module.exports = {
                 new ButtonBuilder()
                     .setLabel("Support")
                     .setStyle(ButtonStyle.Link)
-                    .setURL(`https://discord.com/users/1066067393123733595`)
+                    .setURL(`https://discord.gg/4EXvZvGUe5`)
                     .setEmoji("<:stafficon:1454546313571209287>")
             )
         ];
@@ -72,7 +72,7 @@ module.exports = {
                 new ButtonBuilder()
                     .setLabel("Support")
                     .setStyle(ButtonStyle.Link)
-                    .setURL(`https://discord.com/users/1066067393123733595`)
+                    .setURL(`https://discord.gg/4EXvZvGUe5`)
                     .setEmoji("<:stafficon:1454546313571209287>")
             )
         ];
