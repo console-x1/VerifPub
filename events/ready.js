@@ -34,7 +34,7 @@ module.exports = {
                 )
             ];
 
-            await channel.send({ components, flags: MessageFlags.IsComponentsV2, allowedMentions: { parse: [] } });
+            if (channel) await channel.send({ components, flags: MessageFlags.IsComponentsV2, allowedMentions: { parse: [] } });
         }
         if (client.config.sendStartMsg) sendReadyEmbed();
 
