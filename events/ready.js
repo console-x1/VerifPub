@@ -14,7 +14,7 @@ module.exports = {
     async execute(client) {
         loggT('\n')
         loggT(`[READY]  ${client.user.tag} est prêt ||| ${client.guilds.cache.size} serveurs | ${client.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)} utilisateurs`);
-        console.log(`[READY]  ${client.user.tag} est prêt ||| ${client.guilds.cache.size} serveurs | ${client.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)} utilisateurs`.blue);
+        console.log(`[READY]  ${client.user.tag.padEnd(23, " ")} est prêt | ${String(client.guilds.cache.size).padEnd(4, " ")} serveurs | ${String(client.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)).padEnd(6, " ")} utilisateurs`.green);
 
         const channel = await client.channels.cache.get(client.config.sendStartMsgId);
 
