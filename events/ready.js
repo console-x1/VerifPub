@@ -16,12 +16,6 @@ module.exports = {
         loggT(`[READY]  ${client.user.tag} est prêt ||| ${client.guilds.cache.size} serveurs | ${client.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)} utilisateurs`);
         console.log(`[READY]  ${client.user.tag} est prêt ||| ${client.guilds.cache.size} serveurs | ${client.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)} utilisateurs`.blue);
 
-        client.user.setStatus("Online")
-        setInterval(() => {
-            let randomA = Math.floor(Math.random() * status.length);
-            client.user.setActivity(status[randomA]);
-        }, 10000);
-
         const channel = await client.channels.cache.get(client.config.sendStartMsgId);
 
         async function sendReadyEmbed() {
@@ -68,15 +62,3 @@ module.exports = {
         })
     }
 }
-
-
-let status = [
-    {
-        name: 'Beta publique',
-        type: ActivityType.Custom,
-    },
-    {
-        name: 'vBeta ' + V.version + (V.description ? ' - ' + V.description : ''),
-        type: ActivityType.Custom,
-    },
-]
