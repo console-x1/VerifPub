@@ -1,6 +1,8 @@
 const { Client, Collection, GatewayIntentBits, Partials, ActivityType, Routes } = require("discord.js");
 const { REST } = require('@discordjs/rest');
 
+const db = require("./fonctions/database");
+
 const fs = require("fs");
 const path = require("path");
 const colors = require("colors");
@@ -15,11 +17,13 @@ let config = null;
 // ==================================================
 // IPC – ordres du core
 // ==================================================
-process.on("message", msg => {
+process.on("message", async msg => {
   if (!msg || !msg.type) return;
 
   if (msg.type === "INIT") {
     config = msg.config;
+
+    await db.ready;
 
     startBot(config);
   }
