@@ -68,7 +68,7 @@ module.exports = {
         loggV(`[ PUB ] ${message.guild.name} / ${message.guild.id} | Publicité envoyée par ${message.author.id} / ${message.author.tag}#${message.author.discriminator} dans ${message.channel.name}`)
 
 
-        const inviteRegex = /(https?:\/\/)?(www\.)?(discord|discordapp)\.(gg|io|me|li|com)\/(invite|invites)?\/(?<code>[a-zA-Z0-9-]+)/gi;
+        const inviteRegex =  /(?:https?:\/\/)?(?:www\.)?(?:discord\.gg|discord(?:app)?\.com\/invite|discord\.com\/invite)\/(?<code>[a-zA-Z0-9-]+)/gi;
         const invites = [...message.content.matchAll(inviteRegex)];
 
         let invitesList = [];
