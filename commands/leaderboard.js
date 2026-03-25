@@ -21,13 +21,13 @@ module.exports = {
         const leaderboard = data.map((row, i) => {
             let position;
             switch (i) {
-                case 0: position = "<:level7:1414072215854387220>"; break;
-                case 1: position = "<:level6:1414072212125650955>"; break;
-                case 2: position = "<:level5:1414072209546154046>"; break;
-                case 3: position = "<:level4:1414072207570632815>"; break;
-                case 4: position = "<:level3:1414072205188403251>"; break;
-                case 5: position = "<:level2:1414072202739060767>"; break;
-                case 6: position = "<:level1:1414072201279312074>"; break;
+                case 0: position = "<:level8:1486414097376612546>"; break;
+                case 1: position = "<:level7:1486414072013394124>"; break;
+                case 2: position = "<:level6:1486414041877319931>"; break;
+                case 3: position = "<:level5:1486414014706614272>"; break;
+                case 4: position = "<:level4:1486413994540662967>"; break;
+                case 5: position = "<:level3:1486413969739481119>"; break;
+                case 6: position = "<:level2:1486413920775307487>"; break;
                 case 7: position = "<:fire:1414072120819974214>"; break;
                 case 8: position = "<:fire_3:1414072125756801105>"; break;
                 case 9: position = "<:fire_4:1414072127413420183>"; break;
@@ -57,13 +57,13 @@ module.exports = {
         const leaderboard = data.map((row, i) => {
             let position;
             switch (i) {
-                case 0: position = "<:level7:1414072215854387220>"; break;
-                case 1: position = "<:level6:1414072212125650955>"; break;
-                case 2: position = "<:level5:1414072209546154046>"; break;
-                case 3: position = "<:level4:1414072207570632815>"; break;
-                case 4: position = "<:level3:1414072205188403251>"; break;
-                case 5: position = "<:level2:1414072202739060767>"; break;
-                case 6: position = "<:level1:1414072201279312074>"; break;
+                case 0: position = "<:level8:1486414097376612546>"; break;
+                case 1: position = "<:level7:1486414072013394124>"; break;
+                case 2: position = "<:level6:1486414041877319931>"; break;
+                case 3: position = "<:level5:1486414014706614272>"; break;
+                case 4: position = "<:level4:1486413994540662967>"; break;
+                case 5: position = "<:level3:1486413969739481119>"; break;
+                case 6: position = "<:level2:1486413920775307487>"; break;
                 case 7: position = "<:fire:1414072120819974214>"; break;
                 case 8: position = "<:fire_3:1414072125756801105>"; break;
                 case 9: position = "<:fire_4:1414072127413420183>"; break;

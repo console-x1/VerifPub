@@ -26,7 +26,7 @@ module.exports = {
 
             await message.reply({ components, flags: MessageFlags.IsComponentsV2, allowedMentions: { repliedUser: false } });
 
-            const helpVerifFR = 'Ici seront affichées les publicités des utilisateurs ainsi que des boutons pour accepter la publicité, avertir le membre et pour simplement la supprimer.\n<a:verifyyellow:1414364545975324823> -> Valider la publicité\n<:X_:1414375775330635816> -> Avertir le membre\n🗑️ -> Supprimer la publicité (cela n\'avertit pas le membre).\n\n<:warning:1414161189059035167> Les bots ne sont pas ignorés par le système et les publicités de moins de 30 caractères sont automatiquement supprimées. <:warning:1414161189059035167>';
+            const helpVerifFR = 'Ici seront affichées les publicités des utilisateurs ainsi que des boutons pour accepter la publicité, avertir le membre et pour simplement la supprimer.\n<a:verifyyellow:1414364545975324823> -> Valider la publicité\n<:X_:1414375775330635816> -> Avertir le membre\n🗑️ -> Supprimer la publicité (cela n\'avertit pas le membre).\n\n<:warning:1454545145650479382> Les bots ne sont pas ignorés par le système et les publicités de moins de 30 caractères sont automatiquement supprimées. <:warning:1454545145650479382>';
 
             const verificationComponents = [
                 new TextDisplayBuilder().setContent('<a:moderator:1414364533920632842> Verification :'),
@@ -62,7 +62,7 @@ module.exports = {
 
             await interaction.reply({ components, flags: MessageFlags.IsComponentsV2 | 64, allowedMentions: { repliedUser: false } });
 
-            const helpVerifFR = 'Ici seront affichées les publicités des utilisateurs ainsi que des boutons pour accepter la publicité, avertir le membre et pour simplement la supprimer.\n<a:verifyyellow:1414364545975324823> -> Valider la publicité\n<:X_:1414375775330635816> -> Avertir le membre\n🗑️ -> Supprimer la publicité (cela n\'avertit pas le membre).\n\n<:warning:1414161189059035167> Les bots ne sont pas ignorés par le système et les publicités de moins de 30 caractères sont automatiquement supprimées. <:warning:1414161189059035167>';
+            const helpVerifFR = 'Ici seront affichées les publicités des utilisateurs ainsi que des boutons pour accepter la publicité, avertir le membre et pour simplement la supprimer.\n<a:verifyyellow:1414364545975324823> -> Valider la publicité\n<:X_:1414375775330635816> -> Avertir le membre\n🗑️ -> Supprimer la publicité (cela n\'avertit pas le membre).\n\n<:warning:1454545145650479382> Les bots ne sont pas ignorés par le système et les publicités de moins de 30 caractères sont automatiquement supprimées. <:warning:1454545145650479382>';
 
             const verificationComponents = [
                 new TextDisplayBuilder().setContent('<a:moderator:1414364533920632842> Verification :'),

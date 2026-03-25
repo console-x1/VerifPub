@@ -122,7 +122,7 @@ module.exports = {
             .setTitle("⏳ Nouvelle publicité :")
             .setDescription("\n\n" + message.content + "\n\n")
             .addFields({ name: 'Utilisateur :', value: `<@${message.author.id}> | \`${message.author.username}#${message.author.discriminator}\``, inline: true })
-            .addFields({ name: 'Salon :', value: `<#${message.channel.id}> | \`${message.channel.name}\``, inline: true })
+            .addFields({ name: 'Salon :', value: `https://discord.com/channels/${message.guild.id}/${message.channel.id}` + ` | \`${message.channel.name}\``, inline: true })
             .addFields({ name: 'ID de la pub :', value: `${message.id}\n\n_ _`, inline: true })
             .setColor(client.config.color)
             .setFooter({ text: `Merci d'utiliser ${client.user.username} !`, iconURL: client.user.displayAvatarURL({ dynamic: true }) })

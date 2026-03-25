@@ -11,17 +11,17 @@ module.exports = {
 
     async execute(client, message, args) {
         let content;
-        if (client.config.id !== '1405597638199480434') content = `<:config:1414072057959809034> **Accès interdit ! Commande réservé aux développeurs !** <:config:1414072057959809034>`
+        if (client.config.id !== '1405597638199480434') content = `<:staff:1454546318738329926> **Accès interdit ! Commande réservé aux développeurs !** <:staff:1454546318738329926>`
 
         if (!content) {
-            if (!args || ((!args[0] && !args[1]) || (args[0] !== 'remove' && args[0] !== 'add'))) content = `<:config:1414072057959809034> Utilisation correcte : ${client.config.prefix}know-self <add|remove> <userId> <:config:1414072057959809034>`
+            if (!args || ((!args[0] && !args[1]) || (args[0] !== 'remove' && args[0] !== 'add'))) content = `<:staff:1454546318738329926> Utilisation correcte : ${client.config.prefix}know-self <add|remove> <userId> <:staff:1454546318738329926>`
             else if (args[0] !== 'add') self.removeId(args[1])
             else if (args[0] !== 'remove') self.addId(args[1])
         }
 
         if (!content) {
-            if (args[0] == 'remove') content = `<:config:1414072057959809034> **<@${args[1]}> | \`${args[1]}\` a été supprimer de la liste des selfbots connus avec succès** <:config:1414072057959809034>`
-            else content = `<:config:1414072057959809034> **<@${args[1]}> | \`${args[1]}\` a été ajouter dans la liste des selfbots connus avec succès** <:config:1414072057959809034>`
+            if (args[0] == 'remove') content = `<:staff:1454546318738329926> **<@${args[1]}> | \`${args[1]}\` a été supprimer de la liste des selfbots connus avec succès** <:staff:1454546318738329926>`
+            else content = `<:staff:1454546318738329926> **<@${args[1]}> | \`${args[1]}\` a été ajouter dans la liste des selfbots connus avec succès** <:staff:1454546318738329926>`
         }
 
         const components = [
@@ -37,7 +37,7 @@ module.exports = {
         let content;
         const user = interaction.options.getUser('user').id
         const action = interaction.options.getString('action')
-        if (client.config.id !== '1405597638199480434') content = `<:config:1414072057959809034> **Accès interdit ! Commande réservé aux développeurs !** <:config:1414072057959809034>`
+        if (client.config.id !== '1405597638199480434') content = `<:staff:1454546318738329926> **Accès interdit ! Commande réservé aux développeurs !** <:staff:1454546318738329926>`
 
         if (!content) {
             if (action !== 'add') self.removeId(user)
@@ -45,8 +45,8 @@ module.exports = {
         }
 
         if (!content) {
-            if (action == 'remove') content = `<:config:1414072057959809034> **<@${user}> | \`${user}\` a été supprimer de la liste des selfbots connus avec succès** <:config:1414072057959809034>`
-            else content = `<:config:1414072057959809034> **<@${user}> | \`${user}\` a été ajouter dans la liste des selfbots connus avec succès** <:config:1414072057959809034>`
+            if (action == 'remove') content = `<:staff:1454546318738329926> **<@${user}> | \`${user}\` a été supprimer de la liste des selfbots connus avec succès** <:staff:1454546318738329926>`
+            else content = `<:staff:1454546318738329926> **<@${user}> | \`${user}\` a été ajouter dans la liste des selfbots connus avec succès** <:staff:1454546318738329926>`
         }
 
         const components = [

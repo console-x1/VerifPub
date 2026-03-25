@@ -13,7 +13,7 @@ function createSuccessComponents() {
 function createErrorComponents(msgFR) {
     return [
         new ContainerBuilder().addTextDisplayComponents(
-            new TextDisplayBuilder().setContent(`<:warning:1414161189059035167> ${msgFR}`)
+            new TextDisplayBuilder().setContent(`<:warning:1454545145650479382> ${msgFR}`)
         )
     ];
 }

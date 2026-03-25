@@ -11,7 +11,7 @@ module.exports = {
     async execute(client, message) {
         const components = [
             new ContainerBuilder().addTextDisplayComponents(
-                new TextDisplayBuilder().setContent(`<:switch:1454546262857613526> Mon prefix est : **${client.config.prefix}**`)
+                new TextDisplayBuilder().setContent(`<:fire:1414072120819974214> Mon prefix est : **${client.config.prefix}**`)
             )
         ];
 
@@ -21,7 +21,7 @@ module.exports = {
     async executeSlash(client, interaction) {
         const components = [
             new ContainerBuilder().addTextDisplayComponents(
-                new TextDisplayBuilder().setContent(`<:switch:1454546262857613526> Mon prefix est : **${client.config.prefix}**`)
+                new TextDisplayBuilder().setContent(`<:fire:1414072120819974214> Mon prefix est : **${client.config.prefix}**`)
             )
         ];
 

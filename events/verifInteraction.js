@@ -18,9 +18,14 @@ module.exports = {
             if (!embed || !embed.fields?.length) return;
 
             const userId = (embed.fields[0].value.match(/\d{17,19}/) || [null])[0];
-            const channelId = (embed.fields[1].value.match(/\d{17,19}/) || [null])[0];
+            const guildId = (embed.fields[1].value.match(/\d{17,19}/) || [null])[0];
+            const channelId = (embed.fields[1].value.match(/\d{17,19}/) || [null])[1];
             const messageId = (embed.fields[2].value.match(/\d{17,19}/) || [null])[0];
             const messagePub = embed.description || null;
+            const guildPublic = client.guilds.cache.get(guildId);
+            if (!guildPublic)
+                return
+            guildPublic.id = guildId;
 
             if (!userId || !channelId || !messageId || !messagePub) return;
             if (userId === interaction.user.id) {
@@ -120,16 +125,16 @@ module.exports = {
             }
 
             // --- Leaderboard ---
-            db.run(`UPDATE users SET lb = lb + ? WHERE guildId = ? AND userId = ?`, [1, interaction.guild.id, interaction.user.id]);
+            db.run(`UPDATE users SET lb = lb + ? WHERE guildId = ? AND userId = ?`, [1, guildPublic.id, interaction.user.id]);
 
             // --- Logs function ---
             async function logsmsg(userID, pubeur, channelId, messageId, messagePub, refus, status) {
-                console.log((`[VERIF] ${interaction.guild.name} | ${interaction.user.username} a vérifié une publicité. `.green) + (status == "valide" ? `(valide)`.green : status == "delete" ? `(delete)`.grey : `(refus )`.red));
-                loggV(`[VERIF] ${interaction.guild.name} / ${interaction.guild.id} |  ${interaction.user.id} / ${interaction.user.username}#${interaction.user.discriminator} a vérifié une publicité. (${status})`);
+                console.log((`[VERIF] ${guildPublic.name} | ${interaction.user.username} a vérifié une publicité. `.green) + (status == "valide" ? `(valide)`.green : status == "delete" ? `(delete)`.grey : `(refus )`.red));
+                loggV(`[VERIF] ${guildPublic.name} / ${guildPublic.id} |  ${interaction.user.id} / ${interaction.user.username}#${interaction.user.discriminator} a vérifié une publicité. (${status})`);
 
                 if (status === "refus") {
                     const donneeUserPubSanction = await new Promise((resolve, reject) => {
-                        db.all(`SELECT * FROM sanctions WHERE guildId = ? AND userId = ?`, [interaction.guild.id, userID], (err, row) => {
+                        db.all(`SELECT * FROM sanctions WHERE guildId = ? AND userId = ?`, [guildPublic.id, userID], (err, row) => {
                             if (err) reject(err);
                             resolve(row);
                         });
@@ -140,19 +145,19 @@ module.exports = {
                     const currentDate = new Date();
                     const formattedDate = currentDate.toISOString().replace('T', ' ').split('.')[0];
 
-                    db.run(`INSERT INTO sanctions (guildId, userId, reason, date) VALUES (?, ?, ?, ?)`, [interaction.guild.id, userID, refus, formattedDate]);
+                    db.run(`INSERT INTO sanctions (guildId, userId, reason, date) VALUES (?, ?, ?, ?)`, [guildPublic.id, userID, refus, formattedDate]);
 
                     const components = [
                         new ContainerBuilder().addTextDisplayComponents(
                             new TextDisplayBuilder().setContent(`## <:warning:1454545145650479382>・__Nouvelle sanction !__\n\n`),
-                            new TextDisplayBuilder().setContent(`<:fire:1414072120819974214>・**Serveur** : ${interaction.guild.name}\n<:X_:1454545141397327903>・**Salon** : <#${channelId}>\n<a:moderator:1454546370928316571>・**Raison** : ${refus}\n<:warning:1454545145650479382>・**Modérateur** : <@${interaction.user.id}>\n<:bolt:1414071931904327852>・**Sanction n°${(sanctionCount)}**`)
+                            new TextDisplayBuilder().setContent(`<:fire:1414072120819974214>・**Serveur** : ${guildPublic.name}\n<:X_:1454545141397327903>・**Salon** : <#${channelId}>\n<a:moderator:1454546370928316571>・**Raison** : ${refus}\n<:warning:1454545145650479382>・**Modérateur** : <@${interaction.user.id}>\n<:modo:1262161126414614590>・**Sanction n°${(sanctionCount)}**`)
                         )
                     ]
 
                     if (pubeur) pubeur.send({ components, flags: MessageFlags.IsComponentsV2 }).catch(() => { });
 
                     const sanctionData = await new Promise((resolve, reject) => {
-                        db.get(`SELECT * FROM guilds WHERE guildId = ?`, [interaction.guild.id], (err, row) => {
+                        db.get(`SELECT * FROM guilds WHERE guildId = ?`, [guildPublic.id], (err, row) => {
                             if (err) reject(err);
                             resolve(row);
                         });
@@ -174,7 +179,7 @@ module.exports = {
                 pubs.incrementScore(messagePub, userId, channelId, score);
 
                 const guildData = await new Promise((resolve, reject) => {
-                    db.get(`SELECT * FROM guilds WHERE guildId = ?`, [interaction.guild.id], (err, row) => {
+                    db.get(`SELECT * FROM guilds WHERE guildId = ?`, [guildPublic.id], (err, row) => {
                         if (err) reject(err);
                         resolve(row);
                     });
@@ -202,10 +207,10 @@ module.exports = {
                     logCh.send({ embeds: [logsEmbed] });
                 }
                 if (status === "valide") {
-                    logsEmbed.addFields({ name: "Publicité :", value: `https://discord.com/channels/${interaction.guild.id}/${channelId}/${messageId}` });
+                    logsEmbed.addFields({ name: "Publicité :", value: `https://discord.com/channels/${guildPublic.id}/${channelId}/${messageId}` });
                     logsEmbed.setColor("Green");
                     const buttonLien = new ActionRowBuilder().addComponents(
-                        new ButtonBuilder().setLabel('Lien du message').setURL(`https://discord.com/channels/${interaction.guild.id}/${channelId}/${messageId}`).setStyle(ButtonStyle.Link)
+                        new ButtonBuilder().setLabel('Lien du message').setURL(`https://discord.com/channels/${guildPublic.id}/${channelId}/${messageId}`).setStyle(ButtonStyle.Link)
                     );
                     logCh.send({ embeds: [logsEmbed], components: [buttonLien] });
                 }

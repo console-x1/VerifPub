@@ -36,7 +36,7 @@ module.exports = {
 
         const textContent = `# J'ai été ajouté à un serveur !\n\n` +
             `> <:_Verif_:1262161060165849200> Il s'appelle \`${String(guild.name)}\`\n` +
-            `> <:redmember:1414072312616980560> Il possède **${String(guild.memberCount)}** membres !!\n` +
+            `> <:redmember:1454546334534205595> Il possède **${String(guild.memberCount)}** membres !!\n` +
             `> <:rocket:1414072318212309032> Le nombre de boost est **${String(guild.premiumSubscriptionCount)}**\n` +
             `> <:trophy_1:1454546257556279492> L'owner de ce serveur est <@${String(guild.ownerId)}> | \`${String(client.users.cache.get(guild.ownerId)?.username)}\`\n_ _\n` +
             `J'ai maintenant **${String(client.guilds.cache.size)} serveurs** et **${String(client.guilds.cache.reduce((acc, g) => acc + g.memberCount, 0))} utilisateurs !**\n\n` +

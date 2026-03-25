@@ -27,7 +27,7 @@ module.exports = {
 
         const components = [
             new ContainerBuilder().addTextDisplayComponents(
-                new TextDisplayBuilder().setContent(`<:bolt:1414071931904327852> Voici la liste des salons publicitaires :\n${channelsList}`)
+                new TextDisplayBuilder().setContent(`<:modo:1262161126414614590> Voici la liste des salons publicitaires :\n${channelsList}`)
             )
         ];
 
@@ -50,7 +50,7 @@ module.exports = {
 
         const components = [
             new ContainerBuilder().addTextDisplayComponents(
-                new TextDisplayBuilder().setContent(`<:bolt:1414071931904327852> Voici la liste des salons publicitaires :\n${channelsList}`)
+                new TextDisplayBuilder().setContent(`<:modo:1262161126414614590> Voici la liste des salons publicitaires :\n${channelsList}`)
             )
         ];
 
