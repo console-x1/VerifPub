@@ -57,7 +57,7 @@ module.exports = {
 
         await self.initChannel(message.channel)
         const hash = self.addPubMessage(message.content, message.channel.id, message.author.id, message.createdTimestamp);
-        const selfbotSuspect = self.detectSelfbotFromJson(message.author.id, message.channel.id, hash)
+        const selfbotSuspect = !message.author.bot && self.detectSelfbotFromJson(message.author.id, message.channel.id, hash)
         const know = self.know(message.author.id)
 
         if (selfverif && scoreVerif > 1 && !selfbotSuspect) return message.react('👌');
