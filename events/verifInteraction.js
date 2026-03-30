@@ -17,17 +17,14 @@ module.exports = {
             const embed = interaction.message.embeds[0];
             if (!embed || !embed.fields?.length) return;
 
-            const userId = (embed.fields[0].value.match(/\d{17,19}/) || [null])[0];
-            const guildId = (embed.fields[1].value.match(/\d{17,19}/) || [null])[0];
-            const channelId = (embed.fields[1].value.match(/\d{17,19}/) || [null])[1];
-            const messageId = (embed.fields[2].value.match(/\d{17,19}/) || [null])[0];
+            const userId = (embed.fields[0].value.match(/\d{17,19}/g) || [null])[0];
+            const guildId = (embed.fields[1].value.match(/\d{17,19}/g) || [null])[0];
+            const channelId = (embed.fields[1].value.match(/\d{17,19}/g) || [null])[1];
+            const messageId = (embed.fields[2].value.match(/\d{17,19}/g) || [null])[0];
             const messagePub = embed.description || null;
             const guildPublic = client.guilds.cache.get(guildId);
-            if (!guildPublic)
-                return
-            guildPublic.id = guildId;
 
-            if (!userId || !channelId || !messageId || !messagePub) return;
+            if (!userId || !channelId || !messageId || !messagePub || !guildPublic.id) return;
             if (userId === interaction.user.id) {
                 const components = []
                 components.push(
@@ -126,7 +123,7 @@ module.exports = {
 
             // --- Leaderboard ---
             db.run(`UPDATE users SET lb = lb + ? WHERE guildId = ? AND userId = ?`, [1, guildPublic.id, interaction.user.id]);
-
+           
             // --- Logs function ---
             async function logsmsg(userID, pubeur, channelId, messageId, messagePub, refus, status) {
                 console.log((`[VERIF] ${guildPublic.name} | ${interaction.user.username} a vérifié une publicité. `.green) + (status == "valide" ? `(valide)`.green : status == "delete" ? `(delete)`.grey : `(refus )`.red));
