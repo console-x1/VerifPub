@@ -33,7 +33,9 @@ function loadData() {
 }
 
 function saveData(data) {
-    fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2), "utf8");
+    fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2), "utf8").catch(e => {
+        console.error("Erreur écriture JSON:", e);
+    });
 }
 
 function hashContent(content) {
