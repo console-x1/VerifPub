@@ -122,7 +122,7 @@ module.exports = {
             }
 
             // --- Leaderboard ---
-            db.run(`UPDATE users SET lb = lb + ? WHERE guildId = ? AND userId = ?`, [1, guildPublic.id, interaction.user.id]);
+            db.run(`UPDATE users SET lb = lb + ? WHERE guildId = ? AND userId = ?`, [1, interaction.guild.id, interaction.user.id]);
            
             // --- Logs function ---
             async function logsmsg(userID, pubeur, channelId, messageId, messagePub, refus, status) {
