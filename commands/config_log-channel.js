@@ -11,9 +11,9 @@ module.exports = {
     async execute(client, message, args) {
         if (!args[0]) {
             const components = [
-                new TextDisplayBuilder().setContent("<a:moderator:1414364533920632842> Logs :"),
+                new TextDisplayBuilder().setContent("<a:moderator:1454546370928316571>Logs :"),
                 new ContainerBuilder().addTextDisplayComponents(
-                    new TextDisplayBuilder().setContent("<:X_:1414375775330635816>・Veuillez indiquer un salon valide.")
+                    new TextDisplayBuilder().setContent("<:X_:1454545141397327903>・Veuillez indiquer un salon valide.")
                 )
             ];
             return message.reply({
@@ -33,9 +33,9 @@ module.exports = {
             );
 
             const components = [
-                new TextDisplayBuilder().setContent("<a:moderator:1414364533920632842> Logs :"),
+                new TextDisplayBuilder().setContent("<a:moderator:1454546370928316571>Logs :"),
                 new ContainerBuilder().addTextDisplayComponents(
-                    new TextDisplayBuilder().setContent(`<a:verifyyellow:1414364545975324823>・Enregistrement du salon de logs a été correctement effectué sur <#${channelVerif.id}>.`)
+                    new TextDisplayBuilder().setContent(`<a:verifyyellow:1454545148510732369>・Enregistrement du salon de logs a été correctement effectué sur <#${channelVerif.id}>.`)
                 )
             ];
 
@@ -46,9 +46,9 @@ module.exports = {
             });
         } else {
             const components = [
-                new TextDisplayBuilder().setContent("<a:moderator:1414364533920632842> Logs :"),
+                new TextDisplayBuilder().setContent("<a:moderator:1454546370928316571>Logs :"),
                 new ContainerBuilder().addTextDisplayComponents(
-                    new TextDisplayBuilder().setContent("<:X_:1414375775330635816>・Veuillez indiquer un salon valide.")
+                    new TextDisplayBuilder().setContent("<:X_:1454545141397327903>・Veuillez indiquer un salon valide.")
                 )
             ];
 
@@ -69,9 +69,9 @@ module.exports = {
             );
 
             const components = [
-                new TextDisplayBuilder().setContent("<a:moderator:1414364533920632842> Logs :"),
+                new TextDisplayBuilder().setContent("<a:moderator:1454546370928316571>Logs :"),
                 new ContainerBuilder().addTextDisplayComponents(
-                    new TextDisplayBuilder().setContent(`<a:verifyyellow:1414364545975324823>・Enregistrement du salon de logs a été correctement effectué sur <#${channelVerif.id}>.`)
+                    new TextDisplayBuilder().setContent(`<a:verifyyellow:1454545148510732369>・Enregistrement du salon de logs a été correctement effectué sur <#${channelVerif.id}>.`)
                 )
             ];
 
@@ -82,9 +82,9 @@ module.exports = {
             });
         } else {
             const components = [
-                new TextDisplayBuilder().setContent("<a:moderator:1414364533920632842> Logs :"),
+                new TextDisplayBuilder().setContent("<a:moderator:1454546370928316571>Logs :"),
                 new ContainerBuilder().addTextDisplayComponents(
-                    new TextDisplayBuilder().setContent("<:X_:1414375775330635816>・Veuillez indiquer un salon valide.")
+                    new TextDisplayBuilder().setContent("<:X_:1454545141397327903>・Veuillez indiquer un salon valide.")
                 )
             ];
 

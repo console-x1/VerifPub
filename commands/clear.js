@@ -5,7 +5,7 @@ const db = require("../fonctions/database.js");
 function createSuccessComponents() {
     return [
         new ContainerBuilder().addTextDisplayComponents(
-            new TextDisplayBuilder().setContent("<a:verifyyellow:1414364545975324823> Messages supprimés avec succès.")
+            new TextDisplayBuilder().setContent("<a:verifyyellow:1454545148510732369> Messages supprimés avec succès.")
         )
     ];
 }
