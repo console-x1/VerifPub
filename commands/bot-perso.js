@@ -7,7 +7,7 @@ function createBotPersonnelComponents() {
     return [
         new TextDisplayBuilder().setContent("<:_Verif_:1262161060165849200> **Bot Personnel"),
         new ContainerBuilder().addTextDisplayComponents(
-            new TextDisplayBuilder().setContent(`<a:bot:1414071978771349504> Tu peux obtenir un bot personnalisé ici : <${INVITE_URL}>`),
+            new TextDisplayBuilder().setContent(`<a:verifyyellow:1454545148510732369> Tu peux obtenir un bot personnalisé ici : <${INVITE_URL}>`),
         )
     ];
 }
