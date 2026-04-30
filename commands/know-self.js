@@ -11,18 +11,13 @@ module.exports = {
 
     async execute(client, message, args) {
         let content;
-        if (client.config.id !== '1405597638199480434') content = `<:staff:1454546318738329926> **Accès interdit ! Commande réservé aux développeurs !** <:staff:1454546318738329926>`
 
-        if (!content) {
-            if (!args || ((!args[0] && !args[1]) || (args[0] !== 'remove' && args[0] !== 'add'))) content = `<:staff:1454546318738329926> Utilisation correcte : ${client.config.prefix}know-self <add|remove> <userId> <:staff:1454546318738329926>`
-            else if (args[0] == 'remove') self.removeId(args[1])
-            else if (args[0] == 'add') self.addId(args[1])
-        }
+        if (!args || ((!args[0] && !args[1]) || (args[0] !== 'remove' && args[0] !== 'add'))) content = `<:staff:1454546318738329926> Utilisation correcte : ${client.config.prefix}know-self <add|remove> <userId> <:staff:1454546318738329926>`
+        else if (args[0] == 'remove') self.removeId(args[1])
+        else if (args[0] == 'add') self.addId(args[1])
 
-        if (!content) {
-            if (args[0] == 'remove') content = `<:staff:1454546318738329926> **<@${args[1]}> | \`${args[1]}\` a été supprimer de la liste des selfbots connus avec succès** <:staff:1454546318738329926>`
-            else content = `<:staff:1454546318738329926> **<@${args[1]}> | \`${args[1]}\` a été ajouter dans la liste des selfbots connus avec succès** <:staff:1454546318738329926>`
-        }
+        if (args[0] == 'remove') content = `<:staff:1454546318738329926> **<@${args[1]}> | \`${args[1]}\` a été supprimer de la liste des selfbots connus avec succès** <:staff:1454546318738329926>`
+        else content = `<:staff:1454546318738329926> **<@${args[1]}> | \`${args[1]}\` a été ajouter dans la liste des selfbots connus avec succès** <:staff:1454546318738329926>`
 
         const components = [
             new ContainerBuilder().addTextDisplayComponents(
