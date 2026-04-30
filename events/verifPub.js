@@ -56,9 +56,15 @@ module.exports = {
         const { value: selfverif, score: scoreVerif } = pubs.getSelfVerif(message.content, message.author.id, message.channel.id);
 
         await self.initChannel(message.channel)
-        const hash = self.addPubMessage(message.content, message.channel.id, message.author.id, message.createdTimestamp);
-        const selfbotSuspect = !message.author.bot && self.detectSelfbotFromJson(message.author.id, message.channel.id, hash)
+        
         const know = self.know(message.author.id)
+        const knowNotSelf = self.knowNotSelf(message.author.id)
+
+        const hash = self.addPubMessage(message.content, message.channel.id, message.author.id, message.createdTimestamp);
+
+        const selfbotSuspect = !message.author.bot && self.detectSelfbotFromJson(message.author.id, message.channel.id, hash)
+        if (knowNotSelf) selfbotSuspect = false
+        
 
         if (selfverif && scoreVerif > 1 && !selfbotSuspect) return message.react('👌');
         if (selfverif && scoreVerif < 1 && !selfbotSuspect) return message.delete();
@@ -158,6 +164,7 @@ module.exports = {
             )
 
         let replyText = invitesList?.map(inv => {
+            if (replyText.includes(inv.url)) return null;
             if (!inv.valid) return `**Invitation invalide ou périmée :** ${inv.url}`;
             return `_ _\n__Serveur invité :__ ${inv.guild.name}\n` +
                 `Lien : \`${inv.url}\`\n` +

@@ -24,7 +24,6 @@ async function initChannel(channel, limit = 25) {
     return
 }
 
-
 function loadData() {
     if (!fs.existsSync(DATA_FILE)) {
         return { pubs: {} };
@@ -119,6 +118,7 @@ function detectSelfbotFromJson(userId, channelId, hash, tolerance = 0.05) {
 }
 
 const file = path.join(__dirname, "../selfbot.json");
+const fileNotASelf = path.join(__dirname, "../not-a-self.json");
 
 function know(userId) {
     if (!fs.existsSync(file)) return false;
@@ -155,7 +155,40 @@ function removeId(userId) {
     fs.writeFileSync(file, JSON.stringify(data, null, 2), "utf8");
 }
 
+function knowNotSelf(userId) {
+    if (!fs.existsSync(fileNotASelf)) return false;
 
+    try {
+        const data = JSON.parse(fs.readFileSync(fileNotASelf, "utf8"));
+        return Array.isArray(data.notSelf) && data.notSelf.includes(userId);
+    } catch (e) {
+        console.error("Erreur lecture JSON:", e);
+        return false;
+    }
+}
+
+function addNotSelfId(userId) {
+    let data = { notSelf: [] };
+    if (fs.existsSync(fileNotASelf)) {
+        data = JSON.parse(fs.readFileSync(fileNotASelf, "utf8"));
+    }
+    if (!Array.isArray(data.notSelf)) data.notSelf = [];
+
+    if (!data.notSelf.includes(userId)) {
+        data.notSelf.push(userId);
+        fs.writeFileSync(fileNotASelf, JSON.stringify(data, null, 2), "utf8");
+    }
+}
+
+function removeNotSelfId(userId) {
+    if (!fs.existsSync(fileNotASelf)) return;
+    const data = JSON.parse(fs.readFileSync(fileNotASelf, "utf8"));
+    if (!Array.isArray(data.notSelf)) return;
+
+    const newList = data.notSelf.filter(id => id !== userId);
+    data.notSelf = newList;
+    fs.writeFileSync(fileNotASelf, JSON.stringify(data, null, 2), "utf8");
+}
 
 module.exports = {
     initChannel,
@@ -165,6 +198,9 @@ module.exports = {
     addPubMessage,
     detectSelfbotFromJson,
     know,
+    knowNotSelf,
     addId,
-    removeId
+    removeId,
+    addNotSelfId,
+    removeNotSelfId
 };
