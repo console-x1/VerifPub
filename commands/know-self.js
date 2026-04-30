@@ -15,8 +15,8 @@ module.exports = {
 
         if (!content) {
             if (!args || ((!args[0] && !args[1]) || (args[0] !== 'remove' && args[0] !== 'add'))) content = `<:staff:1454546318738329926> Utilisation correcte : ${client.config.prefix}know-self <add|remove> <userId> <:staff:1454546318738329926>`
-            else if (args[0] !== 'add') self.removeId(args[1])
-            else if (args[0] !== 'remove') self.addId(args[1])
+            else if (args[0] == 'remove') self.removeId(args[1])
+            else if (args[0] == 'add') self.addId(args[1])
         }
 
         if (!content) {
@@ -37,30 +37,27 @@ module.exports = {
         let content;
         const user = interaction.options.getUser('user').id
         const action = interaction.options.getString('action')
-        if (client.config.id !== '1405597638199480434') content = `<:staff:1454546318738329926> **Accès interdit ! Commande réservé aux développeurs !** <:staff:1454546318738329926>`
 
-        if (!content) {
-            if (action !== 'add') self.removeId(user)
-            if (action !== 'remove') self.addId(user)
-        }
+        if (action == 'remove') self.removeId(user)
+        if (action == 'add') self.addId(user)
 
-        if (!content) {
-            if (action == 'remove') content = `<:staff:1454546318738329926> **<@${user}> | \`${user}\` a été supprimer de la liste des selfbots connus avec succès** <:staff:1454546318738329926>`
-            else content = `<:staff:1454546318738329926> **<@${user}> | \`${user}\` a été ajouter dans la liste des selfbots connus avec succès** <:staff:1454546318738329926>`
-        }
+        if (action == 'remove') content = `<:staff:1454546318738329926> **<@${user}> | \`${user}\` a été supprimer de la liste des selfbots connus avec succès** <:staff:1454546318738329926>`
+        else content = `<:staff:1454546318738329926> **<@${user}> | \`${user}\` a été ajouter dans la liste des selfbots connus avec succès** <:staff:1454546318738329926>`
 
         const components = [
             new ContainerBuilder().addTextDisplayComponents(
                 new TextDisplayBuilder().setContent(content)
             )
         ];
+
+        await interaction.reply({ components, flags: MessageFlags.IsComponentsV2, allowedMentions: { parse: [] } });
     },
 
     get data() {
         return new SlashCommandBuilder()
             .setName(this.name)
             .setDescription(this.description)
-            .addStringOption(option => 
+            .addStringOption(option =>
                 option.setName('action')
                     .setDescription('Action a effectuer')
                     .addChoices(
