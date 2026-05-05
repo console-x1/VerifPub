@@ -62,7 +62,7 @@ module.exports = {
 
         const hash = self.addPubMessage(message.content, message.channel.id, message.author.id, message.createdTimestamp);
 
-        const selfbotSuspect = !message.author.bot && self.detectSelfbotFromJson(message.author.id, message.channel.id, hash)
+        let selfbotSuspect = !message.author.bot && self.detectSelfbotFromJson(message.author.id, message.channel.id, hash)
         if (knowNotSelf) selfbotSuspect = false
         
 
