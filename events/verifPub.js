@@ -105,7 +105,8 @@ module.exports = {
                     console.error("Erreur en vérifiant l’invitation :", err);
                     guild = { name: "Erreur API" };
                 }
-
+                
+                if (invitesList.some(inv => inv.url === url)) continue;
                 invitesList.push({ code, url, guild, approx, valid });
             }
         }
@@ -164,7 +165,6 @@ module.exports = {
             )
 
         let replyText = invitesList?.map(inv => {
-            if (replyText.includes(inv.url)) return null;
             if (!inv.valid) return `**Invitation invalide ou périmée :** ${inv.url}`;
             return `_ _\n__Serveur invité :__ ${inv.guild.name}\n` +
                 `Lien : \`${inv.url}\`\n` +
