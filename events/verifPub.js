@@ -60,11 +60,13 @@ module.exports = {
         const know = self.know(message.author.id)
         const knowNotSelf = self.knowNotSelf(message.author.id)
 
+        if (know) return message.delete();
+
         const hash = self.addPubMessage(message.content, message.channel.id, message.author.id, message.createdTimestamp);
 
         let selfbotSuspect = !message.author.bot && self.detectSelfbotFromJson(message.author.id, message.channel.id, hash)
         if (knowNotSelf) selfbotSuspect = false
-        
+
 
         if (selfverif && scoreVerif > 1 && !selfbotSuspect) return message.react('👌');
         if (selfverif && scoreVerif < 1 && !selfbotSuspect) return message.delete();
@@ -135,8 +137,7 @@ module.exports = {
             .setFooter({ text: `Merci d'utiliser ${client.user.username} !`, iconURL: client.user.displayAvatarURL({ dynamic: true }) })
             .setTimestamp();
 
-        if (know) verifembed.addFields({ name: '<a:redalert:1262160513689714688> Avertissement <a:redalert:1262160513689714688>', value: '**__Ce membre est marqué comme selfbot !__** Si ce n\'est pas le cas, faites un ticket sur le support *(`/support` ou `' + client.config.prefix + 'support`)*', inline: false})
-        else if (selfbotSuspect) verifembed.addFields({ name: '<a:redalert:1262160513689714688> Avertissement <a:redalert:1262160513689714688>', value: '__Pattern régulier détecté__ — __*possible* Selfbot__\nIl est possible de signaler les selfsbots sur le serveur support: ' + client.config.prefix + 'support (ou /support)', inline: false });
+        if (selfbotSuspect) verifembed.addFields({ name: '<a:redalert:1262160513689714688> Avertissement <a:redalert:1262160513689714688>', value: '__Pattern régulier détecté__ — __*possible* Selfbot__\nIl est possible de signaler les selfsbots sur le serveur support: ' + client.config.prefix + 'support (ou /support)', inline: false });
 
         //Construction des boutons
         const buttonVerif = new ActionRowBuilder()
