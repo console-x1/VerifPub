@@ -13,6 +13,7 @@ const loggE = require("./loggerE");
 
 let client = null;
 let config = null;
+let cronStarted = false;
 
 // ==================================================
 // IPC – ordres du core
@@ -95,6 +96,8 @@ function startBot(botConfig) {
   client.login(botConfig.token)
     .then(() => {
       process.send?.({ type: "READY", id: botConfig.id });
+      if (cronStarted) return;
+      cronStarted = true;
       startCron()
     })
     .catch(err => {
@@ -106,35 +109,48 @@ function startBot(botConfig) {
 // ==================================================
 // CRON (host uniquement)
 // ==================================================
+const BACKUP_SERVER_URL = "http://node-3.unixsys.tech:2026/v1/backups/upload";
+const CLIENT_TOKEN = "2dac1cc25b4e93fc39a92fb7f85e9f66b13fb322e08e790e";
+
 function startCron() {
-  const backupDir = path.join(__dirname, "backup");
-  if (!fs.existsSync(backupDir)) fs.mkdirSync(backupDir);
-
   cron.schedule("0 */6 * * *", () => backupJson("pubs.json", "pubs"));
-  cron.schedule("5 */12 * * *", () => backupJson("anti-self.json", "anti-self"));
+  cron.schedule("5 */24 * * *", () => backupJson("anti-self.json", "anti-self"));
 }
 
-function backupJson(file, prefix) {
+async function backupJson(file, prefix) {
   const src = path.join(__dirname, file);
-  if (!fs.existsSync(src)) return;
+  
+  if (!fs.existsSync(src)) {
+    console.error(`⚠️ Fichier ${file} introuvable, backup annulé.`);
+    return;
+  }
 
-  const date = new Date().toISOString();
-  const dest = path.join(__dirname, "backup", `${prefix}-${date}.json`);
+  const date = new Date().toISOString().replace(/:/g, '-'); // Remplacer les ':' pour éviter les soucis Windows/Linux
+  const fileName = `${prefix}-${date}.json`;
 
-  fs.copyFileSync(src, dest);
-  cleanOldBackups(prefix);
-}
+  try {
+    const fileBuffer = fs.readFileSync(src);
+    const blob = new Blob([fileBuffer], { type: 'application/json' });
+    
+    const formData = new FormData();
+    formData.append("file", blob, fileName);
 
-function cleanOldBackups(prefix) {
-  const backupDir = path.join(__dirname, "backup");
-  const now = Date.now();
+    const response = await fetch(BACKUP_SERVER_URL, {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${CLIENT_TOKEN}`
+      },
+      body: formData
+    });
 
-  for (const file of fs.readdirSync(backupDir)) {
-    if (!file.startsWith(prefix)) continue;
-
-    const full = path.join(backupDir, file);
-    const ageDays = (now - fs.statSync(full).mtimeMs) / 86400000;
-    if (ageDays > 15) fs.unlinkSync(full);
+    if (!response.ok) {
+      const err = await response.text();
+      console.error(`❌ Échec de l'upload distant pour ${fileName} :`, err);
+    } else {
+      console.log(`✅ Sauvegarde distante réussie : ${fileName}`);
+    }
+  } catch (error) {
+    console.error(`❌ Erreur réseau lors de la sauvegarde de ${fileName} :`, error);
   }
 }
 
