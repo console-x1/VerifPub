@@ -96,9 +96,10 @@ function startBot(botConfig) {
   client.login(botConfig.token)
     .then(() => {
       process.send?.({ type: "READY", id: botConfig.id });
-      if (cronStarted) return;
-      cronStarted = true;
-      startCron()
+      if (!cronStarted) {
+        cronStarted = true;
+        startCron()
+      }
     })
     .catch(err => {
       console.error(`❌ Connexion ${botConfig.NAME} : ${err.message}`.red);
