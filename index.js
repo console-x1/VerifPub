@@ -114,12 +114,14 @@ function startBot(botConfig) {
 // ==================================================
 // CRON (host uniquement)
 // ==================================================
-const BACKUP_SERVER_URL = "http://node-3.unixsys.tech:2026/v1/backups/upload";
-const CLIENT_TOKEN = "2dac1cc25b4e93fc39a92fb7f85e9f66b13fb322e08e790e";
+const BACKUP_SERVER_URL = "http://node-1.consolex1.com:3000/v1/backups/upload";
+const CLIENT_TOKEN = "cb12be95ad560917390c49da6fc410b158fe932f18ed4bc9";
 
 function startCron() {
 	cron.schedule("0 */6 * * *", () => backupJson("pubs.json", "pubs"));
-	cron.schedule("5 */24 * * *", () => backupJson("anti-self.json", "anti-self"));
+	cron.schedule("5 */12 * * *", () => backupJson("anti-self.json", "anti-self"));
+	cron.schedule("11 1 */7 * *", () => backupJson("selfbot.json", "know-self"));
+	cron.schedule("22 2 */7 * *", () => backupJson("not-a-self.json", "not-a-self"));
 }
 
 async function backupJson(file, prefix) {
