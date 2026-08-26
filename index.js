@@ -114,7 +114,7 @@ function startBot(botConfig) {
 // ==================================================
 // CRON (host uniquement)
 // ==================================================
-const BACKUP_SERVER_URL = "http://node-1.consolex1.com:3000/v1/backups/upload";
+const BACKUP_SERVER_URL = "http://node-1.consolex1.com:10000/v1/backups/upload";
 const CLIENT_TOKEN = "cb12be95ad560917390c49da6fc410b158fe932f18ed4bc9";
 
 function startCron() {
